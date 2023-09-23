@@ -4,14 +4,12 @@ const sendEmail = async (email, token) => {
     const encodedToken = encodeURIComponent(token);
     const text = `Please click on the link to verify your email :http://localhost:3000/auth/verify/${encodedToken}`;
     try {
-        var transporter = nodemailer.createTransport({
+        var transporter =  nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: "neetusinghajgara@gmail.com",
                 pass: "cnvm njnz dwre lnkt",
             },
-
-
         });
         var mailOptions = {
             from: "",
@@ -29,5 +27,5 @@ const sendEmail = async (email, token) => {
 
 module.exports = {
     sendEmail,
-    
+
 }
