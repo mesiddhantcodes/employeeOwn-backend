@@ -9,6 +9,7 @@ const sendEmail = async (email, token) => {
             auth: {
                 user: "neetusinghajgara@gmail.com",
                 pass: "cnvm njnz dwre lnkt",
+                
             },
         });
         var mailOptions = {
