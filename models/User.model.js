@@ -21,6 +21,10 @@ var UserSchema=mongoose.Schema({
         required:true,
         unique:true
     },
+    isEmailVerified:{
+        type:Boolean,
+        default:false
+    },
     password:{
         type:String,
         required:true

@@ -9,7 +9,7 @@ router.post(
 
 router.get("/getAllProjects", AuthenticationMiddleware.authenticate, ProjectController.getAllProjects);
 router.get("/getProjectById/:projectId", AuthenticationMiddleware.authenticate, ProjectController.getProjectById);
-router.get("/getProjectByUserId/:userId", AuthenticationMiddleware.authenticate, ProjectController.getProjectByUserId);
+router.get("/getProjectByUserId/", AuthenticationMiddleware.authenticate, ProjectController.getProjectByUser);
 router.post("/assignProjectToUser", AuthenticationMiddleware.authenticate, ProjectController.assignProjectToUser);
 router.put("/updateProjectById/:projectId", AuthenticationMiddleware.authenticate, ProjectController.updateProjectById);
 router.put("/deleteProjectById/:projectId", AuthenticationMiddleware.authenticate, ProjectController.deleteProjectById);

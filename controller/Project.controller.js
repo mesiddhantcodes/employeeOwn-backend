@@ -7,16 +7,17 @@ const ProjectController = {
     create: async (req, res) => {
         var { projectName, projectDescription } = req.body;
         let checkIfUserExists;
-        let createdBy = req.user.id;
+        // console.log(req.user)
+        var createdBy = req.user.id;
+        // console.log(createdBy)
+        
         try {
             checkIfUserExists = await UserModel.findOne({ _id: createdBy });
         }
         catch (err) {
             return res.status(400).send("User does not exists");
         }
-        if (!checkIfUserExists) {
-            return res.status(400).send("User does not exists");
-        }
+     
         var project = new Project({
             projectName,
             projectDescription,
@@ -43,8 +44,8 @@ const ProjectController = {
         }
         return res.status(200).send(project);
     },
-    getProjectByUserId: async (req, res) => {
-        let { userId } = req.params;
+    getProjectByUser: async (req, res) => {
+        let { userId } = req.user.id;
         let project;
 
         try {
@@ -103,6 +104,11 @@ const ProjectController = {
         if (isCompleted) {
             checkIfProjectExists.isCompleted = isCompleted;
         }
+        checkIfProjectExists.updatedAt = Date.now();
+        checkIfProjectExists.updatedBy = req.user.id;
+        // if(updatedBy){
+        //     checkIfProjectExists.updatedBy = updatedBy;
+        // }
         let ifProjectSaved = await checkIfProjectExists.save();
         if (!ifProjectSaved) {
             return res.status(500).send("Something went wrong");

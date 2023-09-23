@@ -26,6 +26,16 @@ const AuthenticationMiddleware = {
             expiresIn: "6h"
         });
         return token;
-    }
+    },
+    verifyEmailToken: (token) => {
+        try {
+            let decodedToken = decodeURIComponent(token);
+            let decoded = jwt.verify(decodedToken, JWT_SCERET);
+            return decoded;
+        }
+        catch (err) {
+            return false;
+        }
+    },
 }
 module.exports = AuthenticationMiddleware;
